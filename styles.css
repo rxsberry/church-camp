@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nunito:wght@600;700;800;900&display=swap");
+
 :root {
   --bg: #f7fbff;
   --surface: rgba(255, 255, 255, 0.88);
@@ -30,7 +32,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  font-family: "Gowun Dodum", "Nunito", "Pretendard", "Noto Sans KR", sans-serif;
   color: var(--ink);
   background:
     radial-gradient(circle at top left, rgba(255, 219, 104, 0.18), transparent 24%),
@@ -62,6 +64,7 @@ a {
   gap: 12px;
   text-decoration: none;
   font-weight: 800;
+  font-family: "Nunito", "Gowun Dodum", "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 .brand-mark {
@@ -93,6 +96,7 @@ a {
   font-weight: 700;
   font-size: 0.95rem;
   color: #283956;
+  font-family: "Nunito", "Gowun Dodum", "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 .hero {
@@ -147,19 +151,21 @@ a {
 }
 
 .hero h1 span {
-  font-size: clamp(3.2rem, 8vw, 5.6rem);
+  font-size: clamp(2.35rem, 5.7vw, 4.1rem);
   font-weight: 900;
   color: #101d3f;
+  font-family: "Nunito", "Gowun Dodum", "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 .hero h1 strong {
   margin-top: 10px;
-  font-size: clamp(3.2rem, 8vw, 5.8rem);
+  font-size: clamp(2.7rem, 6.4vw, 4.7rem);
   font-weight: 900;
   background: var(--hero-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  font-family: "Nunito", "Gowun Dodum", "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 .hero-copy {
@@ -190,6 +196,7 @@ a {
   text-decoration: none;
   font-weight: 800;
   box-shadow: 0 12px 24px rgba(255, 128, 61, 0.14);
+  font-family: "Nunito", "Gowun Dodum", "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 .hero-button.primary {
@@ -378,9 +385,10 @@ main {
 
 .section-heading h2 {
   margin: 0;
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: clamp(1.7rem, 3.3vw, 2.8rem);
   line-height: 1.18;
   letter-spacing: -0.03em;
+  font-family: "Nunito", "Gowun Dodum", "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 .intro p {
@@ -564,6 +572,7 @@ main {
   font-size: 1.75rem;
   line-height: 1.2;
   letter-spacing: -0.03em;
+  font-family: "Nunito", "Gowun Dodum", "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 .tool-card p {
@@ -602,6 +611,47 @@ main {
   padding: 38px 32px;
 }
 
+.download-pack {
+  padding: 38px 32px;
+  border-color: rgba(255, 210, 103, 0.5);
+}
+
+.download-pack .section-kicker {
+  color: #b96c00;
+}
+
+.download-guide {
+  margin: 16px 0 0;
+  color: #546680;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58px;
+  margin-top: 24px;
+  padding: 0 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+.download-button.pending {
+  background: rgba(255, 244, 210, 0.96);
+  color: #a86400;
+  border: 2px dashed #ffd267;
+  cursor: default;
+}
+
+.download-button.ready {
+  background: var(--button-gradient);
+  color: white;
+  box-shadow: 0 12px 24px rgba(255, 128, 61, 0.16);
+}
+
 .form-demo .section-kicker {
   color: #1b80df;
 }
@@ -631,6 +681,7 @@ main {
 .form-card h3 {
   margin: 0;
   font-size: 1.4rem;
+  font-family: "Nunito", "Gowun Dodum", "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 .form-card > p {
@@ -823,6 +874,7 @@ main {
   margin: 0;
   font-size: 1.4rem;
   color: #183154;
+  font-family: "Nunito", "Gowun Dodum", "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 .manual-summary {
@@ -892,6 +944,7 @@ main {
   .manual-hero,
   .manual-card,
   .manual-note,
+  .download-pack,
   .form-demo {
     padding: 28px 20px;
   }
