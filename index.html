@@ -40,17 +40,18 @@
         <div class="hero-actions">
           <a class="hero-button primary" href="#intro">캠프 소개 보기</a>
           <a class="hero-button secondary" href="#before">AI 도구 살펴보기</a>
+          <a class="hero-button tertiary" href="./manual.html">사용자메뉴얼</a>
         </div>
       </header>
 
       <main>
         <section class="media-showcase card-block" id="media">
           <div class="section-heading">
-            <p class="section-kicker">CAMP PREVIEW · 포스터와 영상</p>
-            <h2>홍보 포스터와 주제 영상을 한눈에 만나 보세요</h2>
+            <p class="section-kicker">CAMP PREVIEW · 미리보기</p>
+            <h2>홍보 포스터, 소개 영상, 사용할 교재를 먼저 만나 보세요</h2>
             <p class="section-copy">
-              메인 페이지 안에서 캠프 홍보 포스터를 바로 확인하고, 소개 영상도 이동 없이 이어서 시청할 수
-              있도록 구성했습니다.
+              캠프를 소개하는 핵심 자료를 한곳에 모았습니다. 포스터와 영상으로 전체 분위기를 보고, 교재는 겹쳐진
+              미리보기 아이콘으로 간단히 확인할 수 있습니다.
             </p>
           </div>
           <div class="media-grid">
@@ -58,9 +59,10 @@
               <div class="media-frame poster-frame">
                 <img src="./poster.png" alt="초등부 믿음 캠프 홍보 포스터" />
               </div>
-              <figcaption>제공된 캠프 홍보 포스터를 메인 페이지에 구조적으로 배치한 영역입니다.</figcaption>
+              <figcaption>캠프 전체 분위기와 주제를 보여 주는 공식 홍보 포스터입니다.</figcaption>
             </figure>
-            <article class="media-card" id="video">
+
+            <article class="media-card">
               <div class="media-frame video-embed">
                 <iframe
                   src="https://www.youtube.com/embed/uWaWEZueSC8?rel=0"
@@ -72,10 +74,26 @@
                 ></iframe>
               </div>
               <p class="media-description">
-                캠프 소개 영상을 웹사이트 안에서 바로 재생할 수 있도록 YouTube 임베드로 연결했습니다. 일부
-                브라우저에서는 `file://` 로 직접 열면 Error 153이 날 수 있으므로 로컬 서버로 여는 방식이 더
+                소개 영상을 웹사이트 안에서 바로 볼 수 있도록 연결했습니다. 배포된 웹 주소에서 보는 것이 가장
                 안정적입니다.
               </p>
+            </article>
+
+            <article class="media-card materials-card">
+              <p class="materials-label">사용할 교재</p>
+              <div class="material-stack" aria-label="캠프 교재 미리보기">
+                <img src="./KakaoTalk_20260624_100600147.jpg" alt="DAY 1 교재" class="material-card card-one" />
+                <img src="./KakaoTalk_20260624_100600147_01.jpg" alt="DAY 2 교재" class="material-card card-two" />
+                <img src="./KakaoTalk_20260624_100600147_02.jpg" alt="DAY 3 교재" class="material-card card-three" />
+              </div>
+              <p class="media-description">
+                DAY 1, DAY 2, DAY 3 교재를 한 번에 볼 수 있도록 겹쳐진 카드 형태로 배치했습니다.
+              </p>
+              <div class="material-links">
+                <a href="./KakaoTalk_20260624_100600147.jpg" target="_blank" rel="noopener noreferrer">DAY 1</a>
+                <a href="./KakaoTalk_20260624_100600147_01.jpg" target="_blank" rel="noopener noreferrer">DAY 2</a>
+                <a href="./KakaoTalk_20260624_100600147_02.jpg" target="_blank" rel="noopener noreferrer">DAY 3</a>
+              </div>
             </article>
           </div>
         </section>
