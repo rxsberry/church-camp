@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>차량 배치 도우미 | 2026 초등부 4~6 믿음 캠프</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="./index.html" aria-label="2026 믿음 캠프 홈">
+          <span class="brand-mark">믿</span>
+          <span class="brand-text">2026 믿음 캠프</span>
+        </a>
+        <nav class="top-nav" aria-label="차량 배치 메뉴">
+          <a href="./index.html">메인으로</a>
+          <a href="#riders">탑승자 추가</a>
+          <a href="#vehicles">차량 설정</a>
+          <a href="#results">배치 결과</a>
+        </nav>
+      </header>
+
+      <main class="tool-page">
+        <section class="tool-hero card-block">
+          <p class="section-kicker">VEHICLE TOOL · 로컬 저장형 페이지</p>
+          <h1>차량 배치 도우미</h1>
+          <p>
+            이 페이지는 현재 웹사이트 안에서 직접 동작하며, 탑승자와 차량 정보를 정리한 뒤 배치 결과를 Google
+            Sheets의 `차량배치` 탭으로 저장할 수 있습니다.
+          </p>
+          <div class="manual-link-row">
+            <a
+              class="manual-link primary"
+              href="https://claude.ai/public/artifacts/c5e5a149-12ca-4d5e-b4ea-a89fd3c44bbe"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              원래 차량 배치 도구 열기
+            </a>
+            <a class="manual-link secondary" href="./index.html#before">메인 도구 목록으로</a>
+          </div>
+        </section>
+
+        <section class="tool-layout tool-layout-three vehicle-tool-layout">
+          <article class="tool-card-panel card-block" id="riders">
+            <div class="section-heading">
+              <p class="section-kicker">RIDERS</p>
+              <h2>탑승자 추가</h2>
+            </div>
+            <form class="camp-form single-column" id="vehicle-rider-form">
+              <label>
+                탑승자 이름
+                <input type="text" name="name" placeholder="예: 김요한" required />
+              </label>
+              <label>
+                출발지
+                <input type="text" name="from" placeholder="예: 교회 앞" />
+              </label>
+              <label>
+                도착지
+                <input type="text" name="to" placeholder="예: 수양관" />
+              </label>
+              <label>
+                메모
+                <textarea
+                  name="notes"
+                  rows="4"
+                  placeholder="멀미약 필요, 보호자 동승 등 차량 배치에 참고할 내용을 적어 주세요."
+                ></textarea>
+              </label>
+              <div class="tool-inline-actions">
+                <button class="tool-primary-button" type="submit">탑승자 목록에 추가</button>
+                <p id="vehicle-rider-status" class="status-note">탑승자를 추가하면 아래 목록과 배치 결과에 반영됩니다.</p>
+              </div>
+            </form>
+          </article>
+
+          <article class="tool-card-panel card-block" id="vehicles">
+            <div class="section-heading">
+              <p class="section-kicker">VEHICLES</p>
+              <h2>차량 설정</h2>
+            </div>
+            <form class="camp-form single-column" id="vehicle-car-form">
+              <label>
+                차량명
+                <input type="text" name="vehicleName" placeholder="예: 스타렉스 1호차" required />
+              </label>
+              <label>
+                운전자
+                <input type="text" name="driver" placeholder="예: 박선생" />
+              </label>
+              <label>
+                탑승 가능 인원
+                <input type="number" min="1" name="capacity" value="8" required />
+              </label>
+              <label>
+                출발지
+                <input type="text" name="from" placeholder="예: 교회 앞" />
+              </label>
+              <label>
+                도착지
+                <input type="text" name="to" placeholder="예: 수양관" />
+              </label>
+              <label>
+                메모
+                <textarea name="notes" rows="4" placeholder="유아용 카시트, 수납 공간 등"></textarea>
+              </label>
+              <div class="tool-inline-actions">
+                <button class="tool-primary-button" type="submit">차량 목록에 추가</button>
+                <p id="vehicle-car-status" class="status-note">차량 정보를 입력한 뒤 배치 결과를 생성해 주세요.</p>
+              </div>
+            </form>
+          </article>
+
+          <article class="tool-card-panel card-block vehicle-results-panel" id="results">
+            <div class="section-heading">
+              <p class="section-kicker">RESULTS</p>
+              <h2>배치 결과 <span class="tool-count-badge" id="vehicle-result-count">0대</span></h2>
+            </div>
+            <p class="tool-subcopy">
+              탑승자 목록과 차량 설정을 바탕으로 각 차량에 탑승자를 배치합니다. 필요하면 항목을 지운 뒤 다시 생성해
+              조정할 수 있습니다.
+            </p>
+            <div class="tool-inline-actions">
+              <button class="tool-primary-button" id="vehicle-generate-button" type="button">배치 결과 생성</button>
+              <button class="tool-secondary-button" id="vehicle-reset-button" type="button">결과 초기화</button>
+            </div>
+
+            <div class="tool-summary-grid vehicle-summary-stack">
+              <article class="tool-summary-box">
+                <div class="tool-heading-with-count">
+                  <strong>탑승자 목록</strong>
+                  <span class="tool-count-badge" id="vehicle-rider-count">0명</span>
+                </div>
+                <div id="vehicle-rider-empty" class="tool-empty">아직 추가된 탑승자가 없습니다.</div>
+                <div id="vehicle-rider-list" class="tool-list" aria-live="polite"></div>
+              </article>
+              <article class="tool-summary-box">
+                <div class="tool-heading-with-count">
+                  <strong>차량 목록</strong>
+                  <span class="tool-count-badge" id="vehicle-car-count">0대</span>
+                </div>
+                <div id="vehicle-car-empty" class="tool-empty">아직 추가된 차량이 없습니다.</div>
+                <div id="vehicle-car-list" class="tool-list" aria-live="polite"></div>
+              </article>
+            </div>
+
+            <div class="tool-result-stack">
+              <div id="vehicle-result-empty" class="tool-empty">배치 결과를 생성하면 차량별 탑승 목록이 표시됩니다.</div>
+              <div id="vehicle-result-list" class="tool-list" aria-live="polite"></div>
+            </div>
+
+            <div class="tool-inline-actions tool-save-actions">
+              <button class="tool-primary-button" id="vehicle-save-button" type="button">스프레드시트에 저장</button>
+              <button class="tool-secondary-button" id="vehicle-clear-button" type="button">전체 목록 비우기</button>
+            </div>
+            <p id="vehicle-save-status" class="status-note">저장 결과가 여기에 표시됩니다.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>© 2026 초등부 4~6 믿음 캠프</p>
+        <p>차량 배치 도우미 페이지</p>
+      </footer>
+    </div>
+
+    <script src="./camp-backend.js"></script>
+    <script src="./vehicle.js"></script>
+  </body>
+</html>

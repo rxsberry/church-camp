@@ -13,22 +13,22 @@ const toolGroups = [
       {
         name: "스마트 조 편성",
         description: "학년·성별·친밀도를 고려해 균형 잡힌 조를 자동으로 만들어 줍니다.",
-        url: "https://claude.ai/public/artifacts/b9e77bca-29df-48a4-86ea-fe731d4813ff",
+        url: "./teams.html",
       },
       {
         name: "봉사자 역할 매칭",
         description: "교사·스태프의 은사와 일정을 반영해 사역 역할을 배정합니다.",
-        url: "https://claude.ai/public/artifacts/20928ff6-225c-45fd-a3ea-44f6128c2d1d",
+        url: "./volunteers.html",
       },
       {
         name: "차량 배치 도우미",
         description: "탑승 인원과 동선을 고려해 차량 배치를 한 번에 정리합니다.",
-        url: "https://claude.ai/public/artifacts/c5e5a149-12ca-4d5e-b4ea-a89fd3c44bbe",
+        url: "./vehicle.html",
       },
       {
         name: "준비물 체크리스트",
         description: "개인·조별·전체 준비물을 빠짐없이 점검할 수 있도록 도와줍니다.",
-        url: "https://claude.ai/public/artifacts/e271e723-3669-4b1d-9805-32eaeed87970",
+        url: "./checklist.html",
       },
       {
         name: "홍보물 디자인 스튜디오",
@@ -105,8 +105,8 @@ const toolGroups = [
       },
       {
         name: "실시간 스케줄 공유",
-        description: "오늘의 일정과 변경 사항을 모두에게 실시간으로 알려 줍니다.",
-        url: "https://claude.ai/public/artifacts/f422f1d8-c940-4a5a-b86a-09792603ed8c",
+        description: "오늘의 일정과 변경 사항을 모두에게 실시간으로 알려 주고 시트에 저장합니다.",
+        url: "./schedule.html",
       },
       {
         name: "잃어버린 양 찾기",
@@ -150,9 +150,6 @@ const toolGroups = [
   },
 ];
 
-const APPS_SCRIPT_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbyHPayakkQ1pi_LJSRdett-3oPzn6VGNwvfhNF1HtcTTK_wolkDQrys5JK0HcHmk2U/exec";
-
 function renderGroup(group) {
   const container = document.querySelector(`[data-group="${group.id}"]`);
   if (!container) {
@@ -187,20 +184,8 @@ function setStatus(target, message, state) {
   target.setAttribute("data-state", state);
 }
 
-async function postToAppsScript(payload) {
-  await fetch(APPS_SCRIPT_ENDPOINT, {
-    method: "POST",
-    mode: "no-cors",
-    credentials: "include",
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8",
-    },
-    body: JSON.stringify(payload),
-  });
-}
-
 function validateEndpoint(statusElement) {
-  if (!APPS_SCRIPT_ENDPOINT) {
+  if (!window.CAMP_BACKEND || !window.CAMP_BACKEND.hasAppsScriptEndpoint()) {
     setStatus(
       statusElement,
       "현재 저장 연결을 확인할 수 없습니다. 잠시 후 다시 시도해 주세요.",
@@ -233,7 +218,7 @@ async function submitRegistration(event) {
   setStatus(status, "신청 정보를 저장 중입니다...", "pending");
 
   try {
-    await postToAppsScript(payload);
+    await window.CAMP_BACKEND.postToAppsScript(payload);
     setStatus(
       status,
       "신청 정보 저장 요청을 보냈습니다. 반영까지 몇 초 정도 걸릴 수 있습니다.",
@@ -268,7 +253,7 @@ async function submitReflection(event) {
   setStatus(status, "소감문을 저장 중입니다...", "pending");
 
   try {
-    await postToAppsScript(payload);
+    await window.CAMP_BACKEND.postToAppsScript(payload);
     setStatus(
       status,
       "소감문 저장 요청을 보냈습니다. 반영까지 몇 초 정도 걸릴 수 있습니다.",
@@ -304,7 +289,7 @@ async function submitPrayer(event) {
   setStatus(status, "기도제목을 저장 중입니다...", "pending");
 
   try {
-    await postToAppsScript(payload);
+    await window.CAMP_BACKEND.postToAppsScript(payload);
     setStatus(
       status,
       "기도제목 저장 요청을 보냈습니다. 반영까지 몇 초 정도 걸릴 수 있습니다.",

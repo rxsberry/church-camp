@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>실시간 스케줄 공유 | 2026 초등부 4~6 믿음 캠프</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="./index.html" aria-label="2026 믿음 캠프 홈">
+          <span class="brand-mark">믿</span>
+          <span class="brand-text">2026 믿음 캠프</span>
+        </a>
+        <nav class="top-nav" aria-label="스케줄 메뉴">
+          <a href="./index.html">메인으로</a>
+          <a href="#schedule-form">일정 입력</a>
+          <a href="#schedule-list">현재 목록</a>
+        </nav>
+      </header>
+
+      <main class="schedule-page">
+        <section class="schedule-hero card-block">
+          <p class="section-kicker">SCHEDULE TOOL · 로컬 저장형 페이지</p>
+          <h1>실시간 스케줄 공유</h1>
+          <p>
+            이 페이지는 Claude 사이트가 아닌 현재 웹사이트 안에서 직접 동작하므로, 일정 데이터를 Google Sheets
+            Apps Script로 바로 보낼 수 있습니다. 먼저 일정을 추가한 뒤 저장 버튼을 누르면 `일정메모` 탭으로 보낼 수
+            있습니다.
+          </p>
+          <div class="manual-link-row">
+            <a
+              class="manual-link primary"
+              href="https://claude.ai/public/artifacts/f422f1d8-c940-4a5a-b86a-09792603ed8c"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              원래 실시간 공유 프로그램 열기
+            </a>
+            <a class="manual-link secondary" href="./index.html#during">메인 도구 목록으로</a>
+          </div>
+        </section>
+
+        <section class="schedule-layout">
+          <article class="schedule-form-card card-block" id="schedule-form">
+            <div class="section-heading">
+              <p class="section-kicker">ADD ENTRY</p>
+              <h2>일정 항목 추가</h2>
+            </div>
+            <form class="camp-form single-column" id="schedule-entry-form">
+              <label>
+                일정 제목
+                <input type="text" name="title" placeholder="예: 저녁 집회 시작" required />
+              </label>
+              <label>
+                일정 내용
+                <textarea
+                  name="content"
+                  rows="4"
+                  placeholder="예: 오후 7시 본당 입장, 6시 50분까지 착석"
+                  required
+                ></textarea>
+              </label>
+              <label>
+                담당자
+                <input type="text" name="owner" placeholder="예: 진행팀" required />
+              </label>
+              <div class="schedule-actions">
+                <button type="submit">목록에 추가</button>
+                <p id="schedule-entry-status" class="status-note">입력한 일정은 아래 목록에 먼저 추가됩니다.</p>
+              </div>
+            </form>
+          </article>
+
+          <article class="schedule-list-card card-block" id="schedule-list">
+            <div class="section-heading">
+              <p class="section-kicker">CURRENT LIST</p>
+              <h2>현재 저장 예정 목록</h2>
+            </div>
+            <p class="schedule-guide">
+              목록에 들어간 항목들을 한 번에 Google Sheets의 `일정메모` 탭으로 저장합니다.
+            </p>
+            <div id="schedule-empty" class="schedule-empty">아직 추가된 일정이 없습니다.</div>
+            <div id="schedule-items" class="schedule-items" aria-live="polite"></div>
+            <div class="schedule-save-row">
+              <button class="schedule-save-button" id="schedule-save-button" type="button">스프레드시트에 저장</button>
+              <button class="schedule-clear-button" id="schedule-clear-button" type="button">목록 비우기</button>
+            </div>
+            <p id="schedule-save-status" class="status-note">저장 결과가 여기에 표시됩니다.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>© 2026 초등부 4~6 믿음 캠프</p>
+        <p>실시간 스케줄 공유 페이지</p>
+      </footer>
+    </div>
+
+    <script src="./camp-backend.js"></script>
+    <script src="./schedule.js"></script>
+  </body>
+</html>

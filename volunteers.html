@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>봉사자 역할 배정 | 2026 초등부 4~6 믿음 캠프</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="./index.html" aria-label="2026 믿음 캠프 홈">
+          <span class="brand-mark">믿</span>
+          <span class="brand-text">2026 믿음 캠프</span>
+        </a>
+        <nav class="top-nav" aria-label="봉사자 배정 메뉴">
+          <a href="./index.html">메인으로</a>
+          <a href="#volunteer-form">봉사자 추가</a>
+          <a href="#volunteer-roster">현재 명단</a>
+          <a href="#volunteer-summary">배정 요약</a>
+        </nav>
+      </header>
+
+      <main class="tool-page">
+        <section class="tool-hero card-block">
+          <p class="section-kicker">VOLUNTEER TOOL · 로컬 저장형 페이지</p>
+          <h1>봉사자 역할 배정</h1>
+          <p>
+            봉사자 명단을 입력한 뒤 각자의 희망 역할과 불가한 역할을 바탕으로 자동 배정 결과를 만들고, 그 결과를
+            Google Sheets의 `봉사자명단` 탭으로 저장할 수 있습니다.
+          </p>
+          <div class="manual-link-row">
+            <a
+              class="manual-link primary"
+              href="https://claude.ai/public/artifacts/20928ff6-225c-45fd-a3ea-44f6128c2d1d"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              원래 봉사자 역할 도구 열기
+            </a>
+            <a class="manual-link secondary" href="./index.html#before">메인 도구 목록으로</a>
+          </div>
+        </section>
+
+        <section class="tool-layout tool-layout-two">
+          <article class="tool-card-panel card-block" id="volunteer-form">
+            <div class="section-heading">
+              <p class="section-kicker">ADD VOLUNTEER</p>
+              <h2>봉사자 추가</h2>
+            </div>
+            <form class="camp-form single-column" id="volunteer-entry-form">
+              <label>
+                이름
+                <input type="text" name="name" placeholder="예: 김은혜" required />
+              </label>
+              <label>
+                연락처
+                <input type="tel" name="phone" placeholder="예: 010-0000-0000" />
+              </label>
+              <label>
+                희망 역할
+                <select name="preferredRole">
+                  <option value="">선택하세요</option>
+                  <option value="인솔">인솔</option>
+                  <option value="찬양">찬양</option>
+                  <option value="안전">안전</option>
+                  <option value="행정">행정</option>
+                  <option value="식사">식사</option>
+                  <option value="미디어">미디어</option>
+                </select>
+              </label>
+              <label>
+                불가한 역할
+                <select name="unavailableRole">
+                  <option value="">없음</option>
+                  <option value="인솔">인솔</option>
+                  <option value="찬양">찬양</option>
+                  <option value="안전">안전</option>
+                  <option value="행정">행정</option>
+                  <option value="식사">식사</option>
+                  <option value="미디어">미디어</option>
+                </select>
+              </label>
+              <label>
+                특이사항
+                <textarea name="notes" rows="4" placeholder="가능 시간, 건강 사항, 차량 가능 여부 등을 적어 주세요."></textarea>
+              </label>
+              <div class="tool-inline-actions">
+                <button class="tool-primary-button" type="submit">명단에 추가</button>
+                <p id="volunteer-entry-status" class="status-note">여러 명을 추가한 뒤 AI 역할 배정 생성 버튼을 눌러 결과를 만들 수 있습니다.</p>
+              </div>
+            </form>
+          </article>
+
+          <article class="tool-card-panel card-block" id="volunteer-roster">
+            <div class="section-heading">
+              <p class="section-kicker">ROSTER</p>
+              <h2>현재 봉사자 명단 <span class="tool-count-badge" id="volunteer-count">0명</span></h2>
+            </div>
+            <p class="tool-subcopy">입력된 희망 역할과 불가한 역할을 바탕으로 자동 배정합니다. 명단이 바뀌면 다시 생성해 최신 결과를 확인해 주세요.</p>
+            <div id="volunteer-empty" class="tool-empty">아직 추가된 봉사자가 없습니다.</div>
+            <div id="volunteer-list" class="tool-result-stack" aria-live="polite"></div>
+
+            <div class="tool-inline-actions">
+              <button class="tool-primary-button" id="volunteer-generate-button" type="button">AI 역할 배정 생성</button>
+            </div>
+
+            <div class="section-heading" id="volunteer-summary">
+              <p class="section-kicker">SUMMARY</p>
+              <h2>배정 요약</h2>
+            </div>
+            <div id="volunteer-summary-list" class="tool-summary-grid" aria-live="polite"></div>
+
+            <div class="tool-inline-actions tool-save-actions">
+              <button class="tool-primary-button" id="volunteer-save-button" type="button">스프레드시트에 저장</button>
+              <button class="tool-secondary-button" id="volunteer-clear-button" type="button">명단 비우기</button>
+            </div>
+            <p id="volunteer-save-status" class="status-note">저장 결과가 여기에 표시됩니다.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>© 2026 초등부 4~6 믿음 캠프</p>
+        <p>봉사자 역할 배정 페이지</p>
+      </footer>
+    </div>
+
+    <script src="./camp-backend.js"></script>
+    <script src="./volunteers.js"></script>
+  </body>
+</html>

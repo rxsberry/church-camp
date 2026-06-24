@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>조편성 앱 | 2026 초등부 4~6 믿음 캠프</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="./index.html" aria-label="2026 믿음 캠프 홈">
+          <span class="brand-mark">믿</span>
+          <span class="brand-text">2026 믿음 캠프</span>
+        </a>
+        <nav class="top-nav" aria-label="조편성 메뉴">
+          <a href="./index.html">메인으로</a>
+          <a href="#team-students">학생 입력</a>
+          <a href="#team-settings">조 설정</a>
+          <a href="#team-results">결과 보기</a>
+        </nav>
+      </header>
+
+      <main class="tool-page">
+        <section class="tool-hero card-block">
+          <p class="section-kicker">TEAM TOOL · 로컬 저장형 페이지</p>
+          <h1>조편성 앱</h1>
+          <p>
+            학생 명단과 조 수를 입력한 뒤 균형 있게 조를 나누고, 결과를 Google Sheets의 `조편성` 탭으로 바로
+            저장할 수 있습니다.
+          </p>
+          <div class="manual-link-row">
+            <a
+              class="manual-link primary"
+              href="https://claude.ai/public/artifacts/b9e77bca-29df-48a4-86ea-fe731d4813ff"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              원래 조편성 도구 열기
+            </a>
+            <a class="manual-link secondary" href="./index.html#before">메인 도구 목록으로</a>
+          </div>
+        </section>
+
+        <section class="tool-layout tool-layout-three">
+          <article class="tool-card-panel card-block" id="team-students">
+            <div class="section-heading">
+              <p class="section-kicker">STUDENTS</p>
+              <h2>학생 입력</h2>
+            </div>
+            <form class="camp-form single-column" id="team-student-form">
+              <label>
+                학생 이름
+                <input type="text" name="name" placeholder="예: 이다니엘" required />
+              </label>
+              <label>
+                학년
+                <select name="grade" required>
+                  <option value="">선택하세요</option>
+                  <option value="4학년">4학년</option>
+                  <option value="5학년">5학년</option>
+                  <option value="6학년">6학년</option>
+                </select>
+              </label>
+              <label>
+                메모
+                <textarea name="notes" rows="4" placeholder="친구 관계, 배려가 필요한 점 등을 적어 주세요."></textarea>
+              </label>
+              <div class="tool-inline-actions">
+                <button class="tool-primary-button" type="submit">학생 목록에 추가</button>
+                <p id="team-student-status" class="status-note">학생을 추가하면 결과 생성 시 자동으로 조편성에 반영됩니다.</p>
+              </div>
+            </form>
+          </article>
+
+          <article class="tool-card-panel card-block" id="team-settings">
+            <div class="section-heading">
+              <p class="section-kicker">GROUPING</p>
+              <h2>조편성 설정</h2>
+            </div>
+            <form class="camp-form single-column" id="team-settings-form">
+              <label>
+                조 개수
+                <input type="number" min="1" name="teamCount" value="4" required />
+              </label>
+              <label>
+                조 이름 접두어
+                <input type="text" name="teamPrefix" value="다니엘" />
+              </label>
+              <label class="check-row">
+                <input type="checkbox" name="shuffle" checked />
+                <span>같은 학년 안에서는 순서를 섞어서 배정하기</span>
+              </label>
+              <div class="tool-inline-actions">
+                <button class="tool-primary-button" type="button" id="team-generate-button">조편성 결과 생성</button>
+                <button class="tool-secondary-button" type="button" id="team-reset-button">결과 초기화</button>
+              </div>
+            </form>
+            <div class="tool-summary-box">
+              <div class="tool-heading-with-count">
+                <strong>현재 학생 목록</strong>
+                <span class="tool-count-badge" id="team-student-count">0명</span>
+              </div>
+              <div id="team-student-empty" class="tool-empty">아직 추가된 학생이 없습니다.</div>
+              <div id="team-student-list" class="tool-list" aria-live="polite"></div>
+            </div>
+          </article>
+
+          <article class="tool-card-panel card-block" id="team-results">
+            <div class="section-heading">
+              <p class="section-kicker">RESULTS</p>
+              <h2>조편성 결과 <span class="tool-count-badge" id="team-result-count">0조</span></h2>
+            </div>
+            <p class="tool-subcopy">
+              학년별 학생을 골고루 나누기 위해 학년 단위로 분산 배치합니다. 결과를 다시 만들면 현재 설정으로 재계산됩니다.
+            </p>
+            <div id="team-result-empty" class="tool-empty">조편성 결과를 생성하면 여기에서 각 조를 확인할 수 있습니다.</div>
+            <div id="team-result-list" class="tool-result-stack" aria-live="polite"></div>
+            <div class="tool-inline-actions tool-save-actions">
+              <button class="tool-primary-button" id="team-save-button" type="button">스프레드시트에 저장</button>
+              <button class="tool-secondary-button" id="team-clear-button" type="button">학생 목록 비우기</button>
+            </div>
+            <p id="team-save-status" class="status-note">저장 결과가 여기에 표시됩니다.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>© 2026 초등부 4~6 믿음 캠프</p>
+        <p>조편성 앱 페이지</p>
+      </footer>
+    </div>
+
+    <script src="./camp-backend.js"></script>
+    <script src="./teams.js"></script>
+  </body>
+</html>

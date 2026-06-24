@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>준비물 체크리스트 | 2026 초등부 4~6 믿음 캠프</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="./index.html" aria-label="2026 믿음 캠프 홈">
+          <span class="brand-mark">믿</span>
+          <span class="brand-text">2026 믿음 캠프</span>
+        </a>
+        <nav class="top-nav" aria-label="준비물 체크 메뉴">
+          <a href="./index.html">메인으로</a>
+          <a href="#checklist-form">항목 추가</a>
+          <a href="#checklist-view">체크리스트 보기</a>
+        </nav>
+      </header>
+
+      <main class="tool-page">
+        <section class="tool-hero card-block">
+          <p class="section-kicker">CHECKLIST TOOL · 로컬 저장형 페이지</p>
+          <h1>준비물 체크리스트</h1>
+          <p>
+            개인, 조별, 공용 준비물을 현재 사이트 안에서 관리하고 완료 여부를 표시한 뒤 Google Sheets의
+            `준비물체크` 탭으로 한 번에 저장할 수 있습니다.
+          </p>
+          <div class="manual-link-row">
+            <a
+              class="manual-link primary"
+              href="https://claude.ai/public/artifacts/e271e723-3669-4b1d-9805-32eaeed87970"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              원래 준비물 체크 도구 열기
+            </a>
+            <a class="manual-link secondary" href="./index.html#before">메인 도구 목록으로</a>
+          </div>
+        </section>
+
+        <section class="tool-layout tool-layout-two">
+          <article class="tool-card-panel card-block" id="checklist-form">
+            <div class="section-heading">
+              <p class="section-kicker">ADD ITEM</p>
+              <h2>준비물 항목 추가</h2>
+            </div>
+            <form class="camp-form single-column" id="checklist-entry-form">
+              <label>
+                구분
+                <select name="category" required>
+                  <option value="">선택하세요</option>
+                  <option value="개인">개인</option>
+                  <option value="조별">조별</option>
+                  <option value="공용">공용</option>
+                </select>
+              </label>
+              <label>
+                준비물 이름
+                <input type="text" name="item" placeholder="예: 성경책, 명찰, 간식 박스" required />
+              </label>
+              <label>
+                담당자
+                <input type="text" name="owner" placeholder="예: 3조 교사 / 진행팀" />
+              </label>
+              <label>
+                메모
+                <textarea name="notes" rows="4" placeholder="수량, 보관 장소, 전달 시점 등을 적어 주세요."></textarea>
+              </label>
+              <div class="tool-inline-actions">
+                <button class="tool-primary-button" type="submit">체크리스트에 추가</button>
+                <p id="checklist-entry-status" class="status-note">추가한 항목은 오른쪽 목록에서 체크 상태를 바꿀 수 있습니다.</p>
+              </div>
+            </form>
+          </article>
+
+          <article class="tool-card-panel card-block" id="checklist-view">
+            <div class="section-heading">
+              <p class="section-kicker">CHECK ITEMS</p>
+              <h2>현재 체크리스트 <span class="tool-count-badge" id="checklist-total-count">0개</span></h2>
+            </div>
+            <p class="tool-subcopy">
+              항목을 클릭해 `준비 전`과 `준비 완료` 상태를 전환할 수 있습니다. 저장 시 현재 표시된 상태가 그대로
+              시트에 반영됩니다.
+            </p>
+            <div id="checklist-empty" class="tool-empty">아직 추가된 준비물이 없습니다.</div>
+            <div id="checklist-groups" class="tool-result-stack" aria-live="polite"></div>
+            <div class="tool-inline-actions tool-save-actions">
+              <button class="tool-primary-button" id="checklist-save-button" type="button">스프레드시트에 저장</button>
+              <button class="tool-secondary-button" id="checklist-clear-button" type="button">목록 비우기</button>
+            </div>
+            <p id="checklist-save-status" class="status-note">저장 결과가 여기에 표시됩니다.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>© 2026 초등부 4~6 믿음 캠프</p>
+        <p>준비물 체크리스트 페이지</p>
+      </footer>
+    </div>
+
+    <script src="./camp-backend.js"></script>
+    <script src="./checklist.js"></script>
+  </body>
+</html>
