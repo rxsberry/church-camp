@@ -31,6 +31,11 @@ const toolGroups = [
         url: "./checklist.html",
       },
       {
+        name: "명찰 만들기",
+        description: "이름과 반 정보를 입력하면 인쇄용 명찰을 한 번에 생성합니다.",
+        url: "https://claude.ai/public/artifacts/e0425920-1824-44e1-9358-b2aecd7f6960",
+      },
+      {
         name: "홍보물 디자인 스튜디오",
         description: "포스터·카드뉴스 등 캠프 홍보물을 AI로 빠르게 만들어 냅니다.",
         url: "https://claude.ai/public/artifacts/49063846-c297-46fb-84f6-376ecebc821f",
